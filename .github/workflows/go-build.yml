@@ -1,0 +1,33 @@
+name: Go-build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get SHA
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+
+      - name: Build
+        uses: thatisuday/go-cross-build@v1.1.0
+        with:
+          platforms: linux/amd64,darwin/amd64
+          package: cmd
+          name: csv-queuer
+          ldflags: -X main.buildVersion=${{ env.SHA }}
+        env:
+          SHA: ${{ steps.short-sha.outputs.sha }}
+
+      - name: Upload a Build Artifacts
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: csv-queuer
+          path: build
+          if-no-files-found: error
+          retention-days: 1

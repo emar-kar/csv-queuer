@@ -1,0 +1,5 @@
+csv_separator: ","
+
+request_timeout: 5
+
+log_folder: ""

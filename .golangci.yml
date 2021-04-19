@@ -1,0 +1,131 @@
+run:
+  concurrency: 4
+
+  timeout: 1m
+
+  issues-exit-code: 1
+
+  tests: true
+
+output:
+  format: colored-line-number
+
+  sort-results: true
+
+linters-settings:
+  cyclop:
+    max-complexity: 10
+    package-average: 0.0
+
+  dogsled:
+    max-blank-identifiers: 2
+
+  dupl:
+    threshold: 100
+
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+
+  errorlint:
+    errorf: true
+
+  exhaustive:
+    check-generated: false
+    default-signifies-exhaustive: false
+
+  funlen:
+    lines: 70
+    statements: 45
+
+  gocognit:
+    min-complexity: 15
+
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+
+  gocyclo:
+    min-complexity: 10
+
+  godot:
+    scope: declarations
+    capital: true
+
+  goimports:
+    local-prefixes: emarkar/gocsv-query
+
+  golint:
+    min-confidence: 0.8
+
+  govet:
+    check-shadowing: true
+    enable-all: true
+
+  ifshort:
+    max-decl-lines: 1
+    max-decl-chars: 30
+
+  lll:
+    line-length: 120
+    tab-width: 1
+
+  misspell:
+    locale: US
+
+  nakedret:
+    max-func-lines: 30
+
+  nestif:
+    min-complexity: 4
+
+  whitespace:
+    multi-if: false
+    multi-func: false
+
+linters:
+  disable-all: true
+  enable:
+    - cyclop
+    - dogsled
+    - dupl
+    - errcheck
+    - errorlint
+    - exhaustive
+    - exportloopref
+    - funlen
+    - gocognit
+    - goconst
+    - gocyclo
+    - godot
+    - godox
+    - gofmt
+    - goimports
+    - golint
+    - govet
+    - ifshort
+    - lll
+    - misspell
+    - nakedret
+    - nestif
+    - prealloc
+    - whitespace
+  fast: false
+
+issues:
+  exclude-rules:
+    - path: _test.go
+      linters:
+        - funlen
+        - dupl
+
+  exclude:
+    - .*Sync.*
+
+  exclude-use-default: true
+
+  max-issues-per-linter: 0
+
+  max-same-issues: 0
+
+  fix: false
