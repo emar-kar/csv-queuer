@@ -17,7 +17,7 @@ jobs:
       - name: Build
         uses: thatisuday/go-cross-build@v1.1.0
         with:
-          platforms: linux/amd64,darwin/amd64
+          platforms: linux/amd64,darwin/amd64,darwin/arm64
           package: cmd
           name: csv-queuer
           ldflags: -X main.buildVersion=${{ env.SHA }}
